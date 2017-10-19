@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/layout_marging"
+    android:orientation="vertical"
+    tools:context="esipe.fr.tp1.activities.AddClientActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name : " />
+
+    <EditText
+        android:id="@+id/etFirstNom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="prenom : " />
+
+    <EditText
+        android:id="@+id/etLastPrenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName" />
+
+
+    <Button
+        android:id="@+id/btnChooseBirthDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBirthDayClick"
+        android:text="Date de naissance" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Sexe : " />
+
+        <Spinner
+            android:id="@+id/spSexe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/submitForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onValiderSubmit"
+        android:text="@string/submit" />
+
+
+</LinearLayout>
