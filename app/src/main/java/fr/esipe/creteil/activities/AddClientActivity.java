@@ -1,4 +1,4 @@
-package fr.esipe.ing3.android.clientapp;
+package fr.esipe.creteil.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -18,25 +18,28 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import fr.esipe.creteil.beans.Client;
+import fr.esipe.ing3.android.clientapp.R;
+
 public class AddClientActivity extends AppCompatActivity {
 
-    public static final String ADD_CLIENT_ACTION = "add_client";
-    Button datebutton;
-    EditText firstNameEditText;
-    EditText lastNameEditText;
-    EditText emailEditText;
-    Spinner spinnerNiveau;
-    SeekBar sb;
-    TextView sb_value;
-    RadioGroup radioGroup;
-    RadioButton maleRadioButton;
-    RadioButton femaleRadioButton;
-    int selectedId;
-    String actifState;
+    public static final String EXTRA_CLIENT_ADDED = "add_client";
+
+    private Button datebutton;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
+    private EditText emailEditText;
+    private Spinner spinnerNiveau;
+    private SeekBar sb;
+    private TextView sb_value;
+    private RadioGroup radioGroup;
+    private RadioButton maleRadioButton;
+    private RadioButton femaleRadioButton;
+    private int selectedId;
+    private String actifState;
     private Calendar calendar = null;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private static final String TAG = "AddClientActivity";
@@ -50,28 +53,6 @@ public class AddClientActivity extends AppCompatActivity {
         lastNameEditText =  (EditText) findViewById(R.id.lastName_editText);
         firstNameEditText = (EditText) findViewById(R.id.firstName_editText);
         emailEditText = (EditText) findViewById(R.id.email_editText);
-
-/*
-        sb= (SeekBar) findViewById(R.id.seekBar);
-        sb_value= (TextView) findViewById(R.id.sb_value);
-
-        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                sb_value.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-*/
         datebutton = (Button) findViewById(R.id.datebutton);
 
         spinnerNiveau = (Spinner) findViewById(R.id.spinner);
@@ -102,37 +83,17 @@ public class AddClientActivity extends AppCompatActivity {
 
     public void onAddButtonClick(View view) {
 
-
-
-        String lastname = lastNameEditText.getText().toString();
         Client c = new Client();
-        c.setLastname(lastname);
+        c.setLastname(lastNameEditText.getText().toString());
+        c.setFirstname(firstNameEditText.getText().toString());
+
+
+
         Log.d(TAG,"test log ->"+c.getLastname());
         Client.getClients().add(c);
-       // Client.setClient(c);
-        sendBroadcast(new Intent(ADD_CLIENT_ACTION));
+
+        sendBroadcast(new Intent(EXTRA_CLIENT_ADDED));
         finish();
-
-       //ListClientFragment.clients.add(c);
-/*
-        String nom = lastNameEditText.getText().toString();
-        String prenom = firstNameEditText.getText().toString();
-        String age = sb_value.getText().toString();
-        String email = emailEditText.getText().toString();
-        String niveau = (String) spinnerNiveau.getSelectedItem();
-
-        Log.d(TAG,"nom : [" + nom +"]");
-        Log.d(TAG,"prenom : [" + prenom+"]");
-        Log.d(TAG,"age : [" + age+"]");
-        Log.d(TAG,"email : [" + email+"]");
-        Log.d(TAG,"niveau :  ["+niveau+"]");
-        Log.d(TAG,"actif : [" +actifState+"]");
-
-        if(maleRadioButton.isChecked()) {
-            Log.d(TAG,"sexe : [" + maleRadioButton.getText().toString()+"]"); }
-        else if(femaleRadioButton.isChecked()) {
-            Log.d(TAG, "sexe : [" + femaleRadioButton.getText().toString()+"]");
-        }*/
     }
 
     public void onDateButtonClick(View view) {

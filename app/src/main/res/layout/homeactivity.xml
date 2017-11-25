@@ -4,7 +4,7 @@
 
     <fragment
         android:id="@+id/list_client_fragment"
-        android:name="fr.esipe.ing3.android.clientapp.ListClientFragment"
+        android:name="fr.esipe.creteil.fragements.ListClientFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.esipe.ing3.android.clientapp.DetailsClientActivity">
+    tools:context="fr.esipe.ing3.android.clientapp.fr.esipe.creteil.activities.DetailsClientActivity">
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="fr.esipe.ing3.android.clientapp.DetailsClientFragment"
+        android:name="fr.esipe.creteil.fragements.DetailsClientFragment"
         android:id="@+id/details_client_fragment" />
 </FrameLayout>

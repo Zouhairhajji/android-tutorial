@@ -1,4 +1,4 @@
-package fr.esipe.ing3.android.clientapp;
+package fr.esipe.creteil.beans;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,8 +19,9 @@ public class Client {
     }
 
     public enum Gender {
-        MAN,WOMAN
+        MAN, WOMAN
     }
+
     private String id;
     private String lastname;
     private String firstname;
@@ -31,35 +32,30 @@ public class Client {
     private Date birthDate;
 
 
-
     private static List<Client> clients;
 
     static {
         clients = new ArrayList<>();
-        for (int i = 0; i < 20 ; i++) {
-         Client c =   new Client(String.valueOf(i),
-                    "nom"+i,"prenom"+i,"email"+i,new Date(),
-                    i %3 == 0 ? Gender.MAN : Gender.WOMAN,
+        for (int i = 0; i < 5; i++) {
+            Client c = new Client(String.valueOf(i),
+                    "nom" + i, "prenom" + i, "email" + i, new Date(),
+                    i % 3 == 0 ? Gender.MAN : Gender.WOMAN,
                     true,
                     "Débutant"
             );
-                    clients.add(c);
+            clients.add(c);
         }
     }
 
-    public Client(String id,String lastname, String firstname, String email, Date birthDate,Gender gender, boolean active,String level) {
+    public Client(String id, String lastname, String firstname, String email, Date birthDate, Gender gender, boolean active, String level) {
         this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
-       this.email = email;
+        this.email = email;
         this.level = level;
         this.gender = gender;
         this.active = active;
         this.birthDate = birthDate;
-    }
-
-    public static void setClient(Client c){
-        clients.add(c);
     }
 
     public static List<Client> getClients() {
@@ -86,7 +82,7 @@ public class Client {
         this.firstname = firstname;
     }
 
-   public String getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -117,10 +113,6 @@ public class Client {
     public void setActive(boolean active) {
         this.active = active;
     }
-
-
-
-
 
 
     public Date getBirthDate() {

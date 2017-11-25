@@ -13,4 +13,14 @@
     </string-array>
 
 
+    <string-array name="settings_list_clients_text">
+        <item>Prenom nom</item>
+        <item>Nom prenom</item>
+    </string-array>
+
+    <string-array name="settings_list_clients_values">
+        <item>PRENOM_NOM</item>
+        <item>NOM_PRENOM</item>
+    </string-array>
+
 </resources>
