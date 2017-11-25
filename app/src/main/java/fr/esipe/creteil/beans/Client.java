@@ -1,5 +1,8 @@
 package fr.esipe.creteil.beans;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,30 +25,34 @@ public class Client {
         MAN, WOMAN
     }
 
+    @SerializedName("id")
     private String id;
+
+    @SerializedName("prenom")
     private String lastname;
+
+    @SerializedName("nom")
     private String firstname;
+
+    @SerializedName("email")
     private String email;
-    private String level;
+
+
+    //@Expose(serialize = false, deserialize = false)
+    @SerializedName("sexe")
     private Gender gender;
-    private boolean active;
+
+    @Expose(serialize = false, deserialize = false)
     private Date birthDate;
 
+    @SerializedName("niveau")
+    private String level;
 
-    private static List<Client> clients;
+    @SerializedName("actif")
+    private boolean active;
 
-    static {
-        clients = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Client c = new Client(String.valueOf(i),
-                    "nom" + i, "prenom" + i, "email" + i, new Date(),
-                    i % 3 == 0 ? Gender.MAN : Gender.WOMAN,
-                    true,
-                    "Débutant"
-            );
-            clients.add(c);
-        }
-    }
+    private static List<Client> clients = new ArrayList<>();
+
 
     public Client(String id, String lastname, String firstname, String email, Date birthDate, Gender gender, boolean active, String level) {
         this.id = id;
@@ -121,5 +128,20 @@ public class Client {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id='" + id + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                ", birthDate=" + birthDate +
+                ", level='" + level + '\'' +
+                ", active=" + active +
+                '}';
     }
 }

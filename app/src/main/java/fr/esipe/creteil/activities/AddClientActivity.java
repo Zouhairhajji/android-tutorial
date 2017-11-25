@@ -17,12 +17,18 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import fr.esipe.creteil.beans.Client;
+import fr.esipe.creteil.configs.RetrofitAPI;
+import fr.esipe.creteil.retrofitInterfaces.ClientRestService;
 import fr.esipe.ing3.android.clientapp.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddClientActivity extends AppCompatActivity {
 
@@ -42,6 +48,7 @@ public class AddClientActivity extends AppCompatActivity {
     private String actifState;
     private Calendar calendar = null;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private ClientRestService clientRestService;
     private static final String TAG = "AddClientActivity";
 
 
@@ -78,7 +85,7 @@ public class AddClientActivity extends AppCompatActivity {
 
         calendar = Calendar.getInstance();
 
-
+        this.clientRestService = RetrofitAPI.createService(ClientRestService.class);
     }
 
     public void onAddButtonClick(View view) {
@@ -89,11 +96,22 @@ public class AddClientActivity extends AppCompatActivity {
 
 
 
-        Log.d(TAG,"test log ->"+c.getLastname());
-        Client.getClients().add(c);
+        //Client.getClients().add(c);
+        this.clientRestService.addClient(c).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(AddClientActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                sendBroadcast(new Intent(EXTRA_CLIENT_ADDED));
+                finish();
+            }
 
-        sendBroadcast(new Intent(EXTRA_CLIENT_ADDED));
-        finish();
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(AddClientActivity.this, "Cannot connect to the server" + t, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     public void onDateButtonClick(View view) {

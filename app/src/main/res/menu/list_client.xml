@@ -7,9 +7,16 @@
         android:icon="@android:drawable/ic_menu_add"
         android:title="Ajouter"
         app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_preferences"
         android:icon="@android:drawable/ic_menu_preferences"
-        android:title="Preferences"
+        android:title="Préferences"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@android:drawable/stat_notify_sync"
+        android:title="Rafraichir"
         app:showAsAction="ifRoom" />
 </menu>
